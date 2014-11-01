@@ -1,0 +1,16 @@
+<?php
+
+$app['app.params'] = array(
+    'db' => array(
+        'driver'   => 'pdo_mysql',
+        'host'     => 'localhost',
+        'dbname'   => 'silex_kitchen',
+        'user'     => 'root',
+        'password' => '',
+    ),
+    'security' => array(
+        'username' => 'username',
+        'role' => 'ROLE_USER',
+        'password' => 'password',
+    ),
+);
