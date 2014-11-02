@@ -11,3 +11,12 @@
         You're not logged. Please <a href="{{ path('login') }}">{{ 'connect'|trans }}</a>
     {% endif %}
 {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ app.request.basepath }}/resources/assets/js/lib/requirejs/require.js"></script>
+    <script>
+        require(['{{ app.request.basepath }}/resources/assets/js/require.config.js'], function(){
+            require(['app/index.main']);
+        });
+    </script>
+{% endblock %}
