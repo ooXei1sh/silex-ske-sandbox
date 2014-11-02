@@ -2,5 +2,7 @@
 /resources/cache/*
 /resources/log/*
 /vendor/
-/public_html/assets/*
+/public_html/resources/assets/*
+/resources/assets/js/lib/*
 /resources/config/params.php
+/node_modules/
