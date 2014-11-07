@@ -9,7 +9,7 @@ $app->match('/', function () use ($app) {
     $app['session']->getFlashBag()->add('warning', 'Warning flash message');
     $app['session']->getFlashBag()->add('info', 'Info flash message');
     $app['session']->getFlashBag()->add('success', 'Success flash message');
-    $app['session']->getFlashBag()->add('error', 'Error flash message');
+    $app['session']->getFlashBag()->add('danger', 'Error flash message');
 
     return $app['twig']->render('index.html.twig');
 })->bind('homepage');

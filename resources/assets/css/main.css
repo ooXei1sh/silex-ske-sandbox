@@ -1,0 +1,29 @@
+html {
+    overflow-y: scroll;
+}
+
+/* sticky footer */
+html, body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    padding-top: 70px;
+    padding-bottom: 100px;
+}
+
+.footer {
+    position: relative;
+    height: 80px;
+    margin-top: -80px;
+    clear: both;
+    color: #777;
+    background: #f9f9f9;
+    border-top:1px solid #e8e8e8;
+    font-size: 11px;
+}
+
+.footer-main {
+    padding: 2em 0;
+}
