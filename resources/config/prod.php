@@ -36,10 +36,27 @@ $app['assetic.output.path_to_js']       = 'js/scripts.js';
 // Doctrine (db)
 $app['db.options'] = array(
     'driver'   => $app['app.params']['db']['driver'],
+    'charset'  => 'utf8',
     'host'     => $app['app.params']['db']['host'],
     'dbname'   => $app['app.params']['db']['dbname'],
     'user'     => $app['app.params']['db']['user'],
     'password' => $app['app.params']['db']['password'],
+);
+
+// Doctrine (ORM)
+$app['orm.proxies_dir'] = $app['cache.path'].'/doctrine/proxies';
+$app['orm.default_cache'] = array(
+    'driver' => 'filesystem',
+    'path' => $app['cache.path'].'/doctrine/cache',
+);
+$app['orm.em.options'] = array(
+    'mappings' => array(
+        array(
+            'type' => 'annotation',
+            'path' => __DIR__.'/../../src',
+            'namespace' => 'Dev\Pub\Entity',
+        ),
+    ),
 );
 
 // User

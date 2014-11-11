@@ -6,3 +6,4 @@
 /resources/assets/js/lib/*
 /resources/config/params.php
 /node_modules/
+*~
