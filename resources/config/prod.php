@@ -6,7 +6,7 @@ require __DIR__.'/params.php';
 $app['locale'] = 'en';
 $app['session.default_locale'] = $app['locale'];
 $app['translator.messages'] = array(
-    'fr' => __DIR__.'/../resources/locales/fr.yml',
+    'en' => __DIR__.'/../resources/locales/en.yml',
 );
 
 // Cache

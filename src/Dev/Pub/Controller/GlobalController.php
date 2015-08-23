@@ -58,7 +58,7 @@ class GlobalController
     public function doctrineAction(Application $app, Request $request)
     {
         return new Response($app['twig']->render('doctrine.html.twig',array(
-            'posts' => $app['db']->fetchAll('SELECT * FROM post')
+            'posts' => $app['db']->fetchAll('SELECT * FROM form')
         )));
     }
 

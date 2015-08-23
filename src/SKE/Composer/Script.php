@@ -6,10 +6,46 @@ class Script
 {
     public static function install()
     {
-        chmod('resources/cache', 0777);
-        chmod('resources/log', 0777);
-        chmod('web/assets', 0777);
-        chmod('console', 0500);
-        exec('php console assetic:dump');
+        $dirs = array(
+            'resources/cache',
+            'resources/log',
+            // 'web/assets',
+        );
+
+        foreach($dirs as $dir) {
+            if (!file_exists($dir))
+                mkdir($dir, 0755, true);
+            else
+                chmod($dir, 0755);
+        }
+
+        $console = 'console';
+
+        $code = <<<HEREDOC
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__.'/vendor/autoload.php';
+
+\$app = new Silex\Application();
+
+require __DIR__.'/resources/config/dev.php';
+require __DIR__.'/src/app.php';
+
+\$console = require __DIR__.'/src/console.php';
+\$console->run();
+HEREDOC;
+
+        if (!file_exists($console)){
+            $fileinfo = new \SplFileInfo($console);
+            $f = $fileinfo->openFile('w');
+            $f->fwrite($code);
+            $fileinfo = null;
+            $f= null;
+        }
+
+        if (file_exists($console)){
+            chmod($console, 0500);
+        }
     }
 }
