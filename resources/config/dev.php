@@ -1,9 +1,11 @@
 <?php
-
-// include the prod configuration
-require __DIR__.'/prod.php';
-
-// enable the debug mode
-$app['debug'] = true;
-
-$app['orm.default_cache'] = 'array';
+return array(
+    'debug' => true,
+    'twig.options' => array(
+        'cache' => false,
+    ),
+    'orm.default_cache' => 'array',
+    'monolog.logfile' => '%app.path%/resources/log/app.log',
+    'monolog.name'    => 'app',
+    'monolog.level'   => 100,
+);

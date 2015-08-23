@@ -1,68 +1,104 @@
 <?php
-
-require __DIR__.'/params.php';
-
-// Local
-$app['locale'] = 'en';
-$app['session.default_locale'] = $app['locale'];
-$app['translator.messages'] = array(
-    'en' => __DIR__.'/../resources/locales/en.yml',
-);
-
-// Cache
-$app['cache.path'] = __DIR__ . '/../cache';
-
-// Http cache
-$app['http_cache.cache_dir'] = $app['cache.path'] . '/http';
-
-// Twig cache
-$app['twig.options.cache'] = $app['cache.path'] . '/twig';
-
-// Assetic
-$app['assetic.enabled']              = false;
-$app['assetic.path_to_cache']        = $app['cache.path'] . '/assetic' ;
-$app['assetic.path_to_web']          = __DIR__ . '/../../web/assets';
-$app['assetic.input.path_to_assets'] = __DIR__ . '/../assets';
-
-$app['assetic.input.path_to_css']       = $app['assetic.input.path_to_assets'] . '/less/style.less';
-$app['assetic.output.path_to_css']      = 'css/styles.css';
-$app['assetic.input.path_to_js']        = array(
-    __DIR__.'/../../vendor/twitter/bootstrap/js/bootstrap-tooltip.js',
-    __DIR__.'/../../vendor/twitter/bootstrap/js/*.js',
-    $app['assetic.input.path_to_assets'] . '/js/script.js',
-);
-$app['assetic.output.path_to_js']       = 'js/scripts.js';
-
-// Doctrine (db)
-$app['db.options'] = array(
-    'driver'   => $app['app.params']['db']['driver'],
-    'charset'  => 'utf8',
-    'host'     => $app['app.params']['db']['host'],
-    'dbname'   => $app['app.params']['db']['dbname'],
-    'user'     => $app['app.params']['db']['user'],
-    'password' => $app['app.params']['db']['password'],
-);
-
-// Doctrine (ORM)
-$app['orm.proxies_dir'] = $app['cache.path'].'/doctrine/proxies';
-$app['orm.default_cache'] = array(
-    'driver' => 'filesystem',
-    'path' => $app['cache.path'].'/doctrine/cache',
-);
-$app['orm.em.options'] = array(
-    'mappings' => array(
-        array(
-            'type' => 'annotation',
-            'path' => __DIR__.'/../../src',
-            'namespace' => 'Dev\Pub\Entity',
+return array(
+    'locale' => 'en',
+    'session.default_locale' => 'en',
+    'translator.messages' => array(
+        'en' => '%app.path%/resources/locales/en.yml',
+    ),
+    'log.path'   => '%app.path%/resources/logs',
+    'cache.path' => '%app.path%/resources/cache',
+    'http_cache.cache_dir' => '%app.path%/resources/cache/http',
+    'serializer.cache.path' => '%app.path%/resources/cache/serializer',
+    'twig.options.cache' => '%app.path%/resources/cache/twig',
+    'profiler.cache_dir' => '%app.path%/resources/cache/profiler',
+    'session.storage.options' => array(
+        'cookie_lifetime' => (60 * 60 * 12) // 12 hours
+    ),
+    'monolog.logfile' => '%app.path%/resources/log/app.log',
+    'monolog.name'    => 'app',
+    'monolog.level'   => 400,
+    'db.options' => array(
+        'driver' => '%db.driver%',
+        'charset' => '%db.charset%',
+        'master' => array(
+            'user'     => '%db.user%',
+            'password' => '%db.password%',
+            'host'     => '%db.host%',
+            'dbname'   => '%db.dbname%'
+        ),
+        'slaves' => array(
+            array(
+                'user'     => '%db.user%',
+                'password' => '%db.password%',
+                'host'     => '%db.host%',
+                'dbname'   => '%db.dbname%'
+            )
+        ),
+        'wrapperClass' => 'Doctrine\DBAL\Connections\MasterSlaveConnection'
+    ),
+    'orm.proxies_dir'   => '%app.path%/resources/cache/doctrine/proxies',
+    'orm.default_cache' => array(
+        'driver' => 'filesystem',
+        'path' => '%app.path%/resources/cache/doctrine/cache',
+    ),
+    'orm.em.options'    => array(
+        'mappings' => array(
+            array(
+                'type' => 'annotation',
+                'namespace' => 'Dev\Pub\Entity',
+                'path' => '%app.path%/src/Dev/Pub/Entity',
+            ),
+        )
+    ),
+    'twig.options' => array(
+        'cache' => '%app.path%/resources/cache/twig',
+        'strict_variables' => true,
+    ),
+    'twig.form.templates' => array(
+        'form_div_layout.html.twig',
+        'common/form_div_layout.html.twig'
+    ),
+    'twig.path' => array(
+        '%app.path%/resources/views'
+    ),
+    'security.firewalls' => array(
+        'main' => array(
+            'pattern' => '^/',
+            'anonymous' => true,
+            'form' => array(
+                'login_path' => '/login',
+                'username_parameter' => 'form[username]',
+                'password_parameter' => 'form[password]',
+                'form_login' => array(
+                    'csrf_provider' => 'form.csrf_provider',
+                ),
+            ),
+            'logout' => array('logout_path' => '/logout'),
+            'users' => array(
+                'username' => array(
+                    '%security.role%',
+                    '%security.password%',
+                ),
+            ) ,
         ),
     ),
-);
-
-// User
-$app['security.users'] = array(
-    $app['app.params']['security']['username'] => array(
-        $app['app.params']['security']['role'],
-        $app['app.params']['security']['password'],
-    )
+    'security.role_hierarchy' => array(
+        'ROLE_USER' => array(),
+        'ROLE_ADMIN' => array('ROLE_USER'),
+        'ROLE_SUPER_ADMIN' => array('ROLE_USER','ROLE_ADMIN','ROLE_ALLOWED_TO_SWITCH'),
+    ),
+    'security.access_rules' => array(
+        array('^/user', 'ROLE_USER'),
+        array('^/admin', 'ROLE_ADMIN'),
+        array('^/root', 'ROLE_SUPER_ADMIN'),
+    ),
+    'mailer.options' => array(
+        'issmtp' => true,
+        'smtpauth' => true,
+        'smtpsecure' => 'ssl',
+        'port' => 465,
+        'host' =>'%mailer.host%',
+        'username' =>'%mailer.username%',
+        'password' =>'%mailer.password%',
+    ),
 );

@@ -79,10 +79,11 @@
             </div>
         </div>
     </footer>
+
+    <script src="{{ app.request.basepath }}/resources/assets/js/lib/requirejs/require.js"></script>    
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ app.request.basepath }}/resources/assets/js/lib/requirejs/require.js"></script>
     <script>
         require(['{{ app.request.basepath }}/resources/assets/js/require.config.js'], function(){});
     </script>

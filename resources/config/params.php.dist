@@ -1,16 +1,19 @@
 <?php
+return array(
+    'app.path' => dirname(dirname(__DIR__)),
 
-$app['app.params'] = array(
-    'db' => array(
-        'driver'   => 'pdo_mysql',
-        'host'     => 'localhost',
-        'dbname'   => 'silex_kitchen',
-        'user'     => 'root',
-        'password' => '',
-    ),
-    'security' => array(
-        'username' => 'username',
-        'role' => 'ROLE_USER',
-        'password' => 'password',
-    ),
+    'db.driver'   => 'pdo_mysql',
+    'db.charset'  => 'utf8',
+    'db.host'     => '127.0.0.1',
+    'db.dbname'   => 'silex_kitchen',
+    'db.user'     => '',
+    'db.password' => '',
+
+    'security.username' => 'username',
+    'security.role' => 'ROLE_USER',
+    'security.password' => 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w==',
+
+    'mailer.host' => '',
+    'mailer.username' => '',
+    'mailer.password' => '',
 );

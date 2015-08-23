@@ -65,17 +65,14 @@ class GlobalController
     public function loginAction(Application $app, Request $request)
     {
         $form = $app['form.factory']->createBuilder('form')
-            ->add(
-                'username',
-                'text',
-                array(
-                    'label' => 'Username',
-                    'data' => $app['session']->get('_security.last_username')
-                )
-            )
-            ->add('password', 'password', array('label' => 'Password'))
-            ->getForm()
-        ;
+            ->add('username', 'text', array(
+                'label' => 'Username',
+                'data' => $app['session']->get('_security.last_username'),
+            ))
+            ->add('password', 'password', array(
+                'label' => 'Password',
+            ))
+            ->getForm();
 
         return new Response($app['twig']->render('login.html.twig', array(
             'form'  => $form->createView(),

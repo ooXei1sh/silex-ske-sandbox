@@ -12,7 +12,6 @@
         <div class="alert alert-info">
             <strong>Hint:</strong> Try <code>username</code>/<code>password</code>
         </div>
-
     {% endif %}
 
     <form action="{{ path('login_check') }}" method="post" novalidate {{ form_enctype(form) }} class="form-vertical">
