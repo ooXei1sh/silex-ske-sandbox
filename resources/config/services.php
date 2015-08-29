@@ -16,6 +16,9 @@ return array(
         'translationServiceProvider' => array(
             'class' => 'Silex\Provider\TranslationServiceProvider'
         ),
+        'translationYamlServiceProvider' => array(
+            'class' => 'Dev\Pub\Provider\Service\TranslationYamlServiceProvider'
+        ),
         'urlGeneratorServiceProvider' => array(
             'class' => 'Silex\Provider\UrlGeneratorServiceProvider'
         ),

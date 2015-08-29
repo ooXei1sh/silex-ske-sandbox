@@ -2,8 +2,11 @@
 return array(
     'locale' => 'en',
     'session.default_locale' => 'en',
-    'translator.messages' => array(
+    'locale_fallbacks' => array('en','fr','de'),
+    'translator.resources.yaml' => array(
         'en' => '%app.path%/resources/locales/en.yml',
+        'de' => '%app.path%/resources/locales/de.yml',
+        'fr' => '%app.path%/resources/locales/fr.yml',
     ),
     'log.path'   => '%app.path%/resources/logs',
     'cache.path' => '%app.path%/resources/cache',
