@@ -55,8 +55,7 @@ return array(
         'strict_variables' => true,
     ),
     'twig.form.templates' => array(
-        'form_div_layout.html.twig',
-        'common/form_div_layout.html.twig'
+        'bootstrap_3_layout.html.twig',
     ),
     'twig.path' => array(
         '%app.path%/resources/views'
