@@ -9,7 +9,6 @@ class Script
         $dirs = array(
             'resources/cache',
             'resources/log',
-            // 'web/assets',
         );
 
         foreach($dirs as $dir) {
@@ -29,7 +28,7 @@ require_once __DIR__.'/vendor/autoload.php';
 
 \$app = new Silex\Application();
 
-require __DIR__.'/resources/config/dev.php';
+\$app['environment'] = 'dev';
 require __DIR__.'/src/app.php';
 
 \$console = require __DIR__.'/src/console.php';
