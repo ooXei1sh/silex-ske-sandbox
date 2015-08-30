@@ -37,15 +37,21 @@ return array(
                 ),
             ),
         ),
-        'twigServiceProvider' => array(
-            'class' => 'Silex\Provider\TwigServiceProvider'
+        'uuidServiceProvider' => array(
+            'class' => 'Dev\Pub\Provider\Service\UuidServiceProvider'
+        ),
+        'userServiceProvider' => array(
+            'class' => 'Dev\Pub\Provider\Service\UserServiceProvider'
         ),
         'securityServiceProvider' => array(
             'class' => 'Silex\Provider\SecurityServiceProvider'
         ),
+        'twigServiceProvider' => array(
+            'class' => 'Silex\Provider\TwigServiceProvider'
+        ),
         'httpFragmentServiceProvider' => array(
             'class' => 'Silex\Provider\HttpFragmentServiceProvider'
-        ),        
+        ),
         'serviceControllerServiceProvider' => array(
             'class' => 'Silex\Provider\ServiceControllerServiceProvider'
         ),

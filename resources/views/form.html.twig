@@ -3,5 +3,5 @@
 
 {% block content %}
     <h2>{{ 'Form'|trans }}</h2>
-    {{ form(form, {action: path('form')}) }}
+    {{ form(form, {action: path('form'), attr:{ 'novalidate': 'novalidate' }}) }}
 {% endblock %}

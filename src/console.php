@@ -20,6 +20,18 @@ if (isset($app['cache.path'])) {
     $console->add($command);
 }
 
+if (isset($app['security.encoder.digest'])) {
+    $command = new Dev\Command\PasswordEncodeCommand();
+    $command->setEncoder($app['security.encoder.digest']);
+    $console->add($command);
+}
+
+if (isset($app['uuid'])) {
+    $command = new Dev\Command\UuidGenerateCommand();
+    $command->setGenerator($app['uuid']);
+    $console->add($command);
+}
+
 if ('dev' === $app['environment']) {
 
     $config = new \Doctrine\ORM\Configuration();

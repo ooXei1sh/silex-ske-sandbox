@@ -18,3 +18,15 @@ Install
     ~$ bower install
 
     ~$ grunt
+
+Configuration
+-------------
+
+All configuration is located in `resources/config` directory. To configure the database edit the `resources/config/params.php` file and the `resources/config/prod.php` file.
+
+Database
+--------
+
+    ~$ ./console orm:schema-tool:update --dump-sql 
+
+    ~$ ./console orm:schema-tool:update --force

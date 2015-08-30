@@ -2,10 +2,9 @@
 {% set active = 'homepage' %}
 
 {% block content %}
-
-    <h1>Hello</h1>
+    <h2>{{ 'Welcome'|trans }}</h2>
     {% if is_granted('ROLE_USER') %}
-        Hello "{{ app.security.token.username }}".<br />
+        {{ 'Hello'|trans }} "{{ app.security.token.username }}".<br />
         <a href="{{ path('logout') }}">{{ 'Logout'|trans }}</a>
     {% else %}
         You're not logged. Please <a href="{{ path('login') }}">{{ 'connect'|trans }}</a>

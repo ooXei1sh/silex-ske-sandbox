@@ -30,6 +30,7 @@ require_once __DIR__.'/vendor/autoload.php';
 
 \$app['environment'] = 'dev';
 require __DIR__.'/src/app.php';
+\$app->boot();
 
 \$console = require __DIR__.'/src/console.php';
 \$console->run();

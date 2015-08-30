@@ -69,6 +69,7 @@ return array(
             'anonymous' => true,
             'form' => array(
                 'login_path' => '/login',
+                'check_path' => '/login_check',
                 'username_parameter' => 'form[username]',
                 'password_parameter' => 'form[password]',
                 'form_login' => array(
@@ -81,7 +82,7 @@ return array(
                     '%security.role%',
                     '%security.password%',
                 ),
-            ) ,
+            ),
         ),
     ),
     'security.role_hierarchy' => array(
