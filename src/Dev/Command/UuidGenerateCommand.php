@@ -14,7 +14,7 @@ class UuidGenerateCommand extends Command
 {
     protected $generator;
 
-    public function getEncoder()
+    public function getGenerator()
     {
         return $this->generator;
     }
@@ -38,12 +38,14 @@ class UuidGenerateCommand extends Command
         $verbose = ($input->getOption('verbose')) ? true : false;
         $dashes = ($input->getOption('dashes')) ? true : false;
 
+        $generator = $this->getGenerator();
+
         if ($verbose) {
-            $output->writeln(sprintf('Generator: <info>%s</info>', print_r(get_class($this->generator),1)));
-            $output->writeln(sprintf('Methods: <info>%s</info>', print_r(get_class_methods($this->generator),1)));
+            $output->writeln(sprintf('Generator: <info>%s</info>', print_r(get_class($generator),1)));
+            $output->writeln(sprintf('Methods: <info>%s</info>', print_r(get_class_methods($generator),1)));
         }
 
-        $uuid = $this->generator->toString();
+        $uuid = $generator->toString();
 
         if (!$dashes)
             $uuid = str_replace('-', '', $uuid);
