@@ -11,8 +11,8 @@ $app->register(new ConfigServiceProvider(__DIR__.'/../resources/config/services.
 // register service providers
 $app->register(new ServiceRegisterProvider('config.providers'));
 
-// @workaround: phpunit session id start prevents form submit tests
-if ('test' !== $app['environment']) {
+// register symfony web profiler in dev environment only
+if ('dev' === $app['environment']) {
     $serviceRegisterProvider = new ServiceRegisterProvider();
     $serviceRegisterProvider->registerServiceProvider($app, array('class' => 'Silex\Provider\WebProfilerServiceProvider'));
 }
