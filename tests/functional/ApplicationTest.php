@@ -13,7 +13,6 @@ class ApplicationTest extends WebTestCase
         require __DIR__.'/../../src/app.php';
 
         $app['session.test'] = true;
-
         require __DIR__.'/../../src/controllers.php';
 
         return $this->app = $app;
@@ -26,26 +25,24 @@ class ApplicationTest extends WebTestCase
         $this->assertEquals(404, $client->getResponse()->getStatusCode(), 'Crawler response status code: '.$client->getResponse()->getStatusCode());
     }
 
-    // public function testLogin()
-    // {
-    //     $client = $this->createClient();
-    //     $client->followRedirects(true);
-    //     $crawler = $client->request('GET', '/login');
-    //     $this->assertTrue($client->getResponse()->isOk(), 'Crawler response status code: '.$client->getResponse()->getStatusCode());
+    public function testLogin()
+    {
+        $client = $this->createClient();
+        $client->followRedirects(true);
+        $crawler = $client->request('GET', '/login');
+        $this->assertTrue($client->getResponse()->isOk(), 'Crawler response status code: '.$client->getResponse()->getStatusCode());
 
-    //     $node = $crawler->filter('form');
-    //     $this->assertEquals(1, $node->count(), 'The form is missing.');
+        $node = $crawler->filter('form');
+        $this->assertEquals(1, $node->count(), 'The form is missing.');
 
-    //     $node = $crawler->filter('form button[type=submit]');
-    //     $this->assertEquals(1, $node->count(), 'The form submit button is missing.');
-    //     $buttonName = $node->text();
+        $node = $crawler->filter('form button[type=submit]');
+        $this->assertEquals(1, $node->count(), 'The form submit button is missing.');
+        $buttonName = $node->text();
 
-    //     // @fail: LogicException in MockArraySessionStorage.php line 134: Cannot set session ID after the session has started.
-    //     $form = $crawler->selectButton($buttonName)->form();
-    //     $crawler = $client->submit($form, array());
-    //     // error_log(print_r($crawler->filter('body')->text(),1).' '.__FILE__.' '.__LINE__,0);
-    //     $this->assertEquals(1, $crawler->filter('.alert-danger')->count());
-    // }
+        $form = $crawler->selectButton($buttonName)->form();
+        $crawler = $client->submit($form, array());
+        $this->assertEquals(1, $crawler->filter('.alert-danger')->count());
+    }
 
     public function testFullForm()
     {

@@ -11,13 +11,18 @@ $app->register(new ConfigServiceProvider(__DIR__.'/../resources/config/services.
 // register service providers
 $app->register(new ServiceRegisterProvider('config.providers'));
 
+// @workaround: phpunit session id start prevents form submit tests
+if ('test' !== $app['environment']) {
+    $serviceRegisterProvider = new ServiceRegisterProvider();
+    $serviceRegisterProvider->registerServiceProvider($app, array('class' => 'Silex\Provider\WebProfilerServiceProvider'));
+}
+
 // configure service providers
 $app->register(new ConfigServiceProvider(__DIR__.'/../resources/config/prod.php', $params));
 
-if('dev' === $app['environment']) {
+if ('dev' === $app['environment']) {
     $app->register(new ConfigServiceProvider(__DIR__."/../resources/config/dev.php", $params));
 }
-
-if ('test' == $app['environment']) {
+elseif ('test' == $app['environment']) {
     $app->register(new ConfigServiceProvider(__DIR__.'/../resources/config/test.php', $params));
 }

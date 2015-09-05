@@ -1,6 +1,12 @@
 <?php
 return array(
     'config.providers' => array(
+        'httpFragmentServiceProvider' => array(
+            'class' => 'Silex\Provider\HttpFragmentServiceProvider'
+        ),
+        'serviceControllerServiceProvider' => array(
+            'class' => 'Silex\Provider\ServiceControllerServiceProvider'
+        ),
         'formServiceProvider' => array(
             'class' => 'Silex\Provider\FormServiceProvider'
         ),
@@ -48,15 +54,6 @@ return array(
         ),
         'twigServiceProvider' => array(
             'class' => 'Silex\Provider\TwigServiceProvider'
-        ),
-        'httpFragmentServiceProvider' => array(
-            'class' => 'Silex\Provider\HttpFragmentServiceProvider'
-        ),
-        'serviceControllerServiceProvider' => array(
-            'class' => 'Silex\Provider\ServiceControllerServiceProvider'
-        ),
-        'webProfilerServiceProvider' => array(
-            'class' => 'Silex\Provider\WebProfilerServiceProvider'
         ),
     )
 );
