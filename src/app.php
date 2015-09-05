@@ -17,3 +17,7 @@ $app->register(new ConfigServiceProvider(__DIR__.'/../resources/config/prod.php'
 if('dev' === $app['environment']) {
     $app->register(new ConfigServiceProvider(__DIR__."/../resources/config/dev.php", $params));
 }
+
+if ('test' == $app['environment']) {
+    $app->register(new ConfigServiceProvider(__DIR__.'/../resources/config/test.php', $params));
+}
