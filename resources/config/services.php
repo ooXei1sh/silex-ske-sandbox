@@ -57,6 +57,6 @@ return array(
         ),
         'mailerServiceProvider' => array(
             'class' => 'Dev\Pub\Provider\MailerServiceProvider'
-        ),       
+        ),
     )
 );

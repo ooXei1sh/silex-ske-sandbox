@@ -13,8 +13,8 @@ $app->register(new ServiceRegisterProvider('config.providers'));
 
 // register dev only services
 if ('dev' === $app['environment']) {
-    $serviceRegisterProvider = new ServiceRegisterProvider();
-    $serviceRegisterProvider->registerServiceProvider($app, array('class' => 'Silex\Provider\WebProfilerServiceProvider'));
+    $app->register(new ConfigServiceProvider(__DIR__.'/../resources/config/services_dev.php'));
+    $app->register(new ServiceRegisterProvider('config.dev.providers'));
 }
 
 // configure service providers
