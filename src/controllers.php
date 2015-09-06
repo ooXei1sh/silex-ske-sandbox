@@ -1,11 +1,12 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Mount
  */
-$app->mount('/', new Dev\Pub\Provider\Controller\GlobalControllerProvider());
+$app->mount('/', new Dev\Pub\Controller\GlobalControllerProvider());
 
 /**
  * Error

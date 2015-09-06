@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev\Pub\Provider\Service;
+namespace Dev\Pub\Provider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;

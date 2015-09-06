@@ -23,7 +23,7 @@ return array(
             'class' => 'Silex\Provider\TranslationServiceProvider'
         ),
         'translationYamlServiceProvider' => array(
-            'class' => 'Dev\Pub\Provider\Service\TranslationYamlServiceProvider'
+            'class' => 'Dev\Pub\Provider\TranslationYamlServiceProvider'
         ),
         'urlGeneratorServiceProvider' => array(
             'class' => 'Silex\Provider\UrlGeneratorServiceProvider'
@@ -44,10 +44,10 @@ return array(
             ),
         ),
         'uuidServiceProvider' => array(
-            'class' => 'Dev\Pub\Provider\Service\UuidServiceProvider'
+            'class' => 'Dev\Pub\Provider\UuidServiceProvider'
         ),
         'userServiceProvider' => array(
-            'class' => 'Dev\Pub\Provider\Service\UserServiceProvider'
+            'class' => 'Dev\Pub\Provider\UserServiceProvider'
         ),
         'securityServiceProvider' => array(
             'class' => 'Silex\Provider\SecurityServiceProvider'
