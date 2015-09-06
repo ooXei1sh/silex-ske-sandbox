@@ -8,24 +8,31 @@ use Symfony\Component\Security\Http\SecurityEvents;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\Event\SwitchUserEvent;
 
-/**
+/*
  * Security events
  */
 $app->on(AuthenticationEvents::AUTHENTICATION_SUCCESS, function (AuthenticationEvent $event) {
-    // $token = $event->getAuthenticationToken();
-    // $tokenUser = $token->getUser();
-    // $roles = $token->getRoles();
+    $token = $event->getAuthenticationToken();
+    $tokenUser = $token->getUser();
+    $roles = $token->getRoles();
 });
 $app->on(AuthenticationEvents::AUTHENTICATION_FAILURE, function (AuthenticationEvent $event) {});
 $app->on(SecurityEvents::INTERACTIVE_LOGIN, function (InteractiveLoginEvent $event) use ($app) {});
 $app->on(SecurityEvents::SWITCH_USER, function (SwitchUserEvent $event) {});
 
-/**
+/*
  * Mount
  */
 $app->mount('/', new Dev\Pub\Controller\GlobalControllerProvider());
 
-/**
+/*
+ * Route
+ */
+$app->match('/blank', function (Request $request) use ($app) {
+    return $app['twig']->render('blank.html.twig', array());
+})->bind('blank');
+
+/*
  * Error
  */
 $app->error(function (\Exception $e, $code) use ($app) {
