@@ -40,6 +40,9 @@ if (isset($app['mailer'])) {
 
 if ('dev' === $app['environment']) {
 
+    $command = new Dev\Command\DemoCommand();
+    $console->add($command);
+
     $config = new \Doctrine\ORM\Configuration();
     $driverImpl = $config->newDefaultAnnotationDriver(array(
         __DIR__.'/Dev',
