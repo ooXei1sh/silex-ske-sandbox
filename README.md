@@ -6,8 +6,15 @@ You can use it for your next php application.
 
 A Silex Edition based on http://lyrixx.github.com/Silex-Kitchen-Edition.
 
+Clone
+-----
+
+    ~$ git clone https://github.com/ooXei1sh/silex-ske-sandbox.git
+
 Install
 -------
+
+Run the following within terminal
 
     ~$ composer install
 
@@ -16,6 +23,10 @@ Install
     ~$ bower install
 
     ~$ grunt
+
+Or
+
+    ~$ composer install && npm install && bower install && grunt
 
 Configure
 ---------
@@ -27,7 +38,9 @@ All configuration is located in `resources/config` directory.
 Database
 --------
 
-To configure the database edit the `resources/config/params.php` file and the `resources/config/prod.php` file.
+    vim resources/config/params.php
+
+    ~$ ./console orm:info
 
     ~$ ./console orm:schema-tool:update --dump-sql 
 
