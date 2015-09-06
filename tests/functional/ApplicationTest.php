@@ -56,11 +56,11 @@ class ApplicationTest extends WebTestCase
 
         $node = $crawler->filter('form button[type=submit]');
         $this->assertEquals(1, $node->count(), 'The form submit button is missing.');
+
         $buttonName = $node->text();
 
         $form = $crawler->selectButton($buttonName)->form();
         $crawler = $client->submit($form);
-
         $this->assertGreaterThan(1, $crawler->filter('.has-error')->count());
     }
 

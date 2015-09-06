@@ -1,7 +1,5 @@
 {
   "name": "ske",
-  "version": "0.1.0",
-  "description": "",
   "licenses": "UNLICENSE",
   "private": true,
   "webDir": "public_html",

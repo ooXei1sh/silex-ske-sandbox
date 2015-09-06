@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use PHPMailer;
 
 class MailerCommand extends Command
 {
@@ -18,7 +19,7 @@ class MailerCommand extends Command
         return $this->mailer;
     }
 
-    public function setMailer($mailer)
+    public function setMailer(PHPMailer $mailer)
     {
         $this->mailer = $mailer;
     }
