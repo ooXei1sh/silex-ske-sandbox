@@ -22,10 +22,10 @@ All configuration is located in the `resources/config` directory.
 
     ~$ cp resources/config/params.php.dist resources/config/params.php
 
+    ~$ vim resources/config/params.php
+
 Database
 --------
-
-    ~$ vim resources/config/params.php
 
     ~$ ./console orm:info
 
