@@ -9,6 +9,7 @@ class Script
         $dirs = array(
             'resources/cache',
             'resources/log',
+            'tmp',
         );
 
         foreach($dirs as $dir) {
