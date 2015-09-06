@@ -38,7 +38,7 @@ All configuration is located in `resources/config` directory.
 Database
 --------
 
-    vim resources/config/params.php
+    ~$ vim resources/config/params.php
 
     ~$ ./console orm:info
 
