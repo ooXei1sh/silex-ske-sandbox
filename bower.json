@@ -6,13 +6,13 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "resources/assets",
+    "assets",
     "test",
     "tests"
   ],
   "dependencies": {
-    "requirejs": "~2.1.15",
-    "jquery": "~2.1.1",
-    "bootstrap": "~3.3.0"
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "requirejs": "~2.1.20"
   }
 }

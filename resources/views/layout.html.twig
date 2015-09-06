@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ app.request.basepath }}/resources/assets/css/main.css">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/assets/css/main.css">
 {% endblock %}
 
 {% block body %}
@@ -80,11 +80,11 @@
         </div>
     </footer>
 
-    <script src="{{ app.request.basepath }}/resources/assets/js/lib/requirejs/require.js"></script>    
+    <script src="{{ app.request.basepath }}/assets/js/lib/requirejs/require.js"></script>    
 {% endblock %}
 
 {% block javascripts %}
     <script>
-        require(['{{ app.request.basepath }}/resources/assets/js/require.config.js'], function(){});
+        require(['{{ app.request.basepath }}/assets/js/require.config.js'], function(){});
     </script>
 {% endblock %}

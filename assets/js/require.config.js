@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: '/resources/assets/js',
+    baseUrl: '/assets/js',
     paths: {
         'jquery': 'lib/jquery/dist/jquery',
         'bootstrap': 'lib/bootstrap/dist/js/bootstrap'

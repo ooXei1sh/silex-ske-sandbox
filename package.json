@@ -5,8 +5,8 @@
   "licenses": "UNLICENSE",
   "private": true,
   "webDir": "public_html",
-  "srcAssetsDir": "resources/assets",
-  "webAssetsDir": "public_html/resources/assets",
+  "srcAssetsDir": "assets",
+  "webAssetsDir": "public_html/assets",
   "dependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",

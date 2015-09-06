@@ -6,5 +6,4 @@ function () {
     $(function(){
         console.log('index.main.js');
     });
-
 });

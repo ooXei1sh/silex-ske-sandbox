@@ -3,7 +3,6 @@ module.exports = function(grunt) {
     // config
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        banner: '/* <%= pkg.name || javascript %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */\n',
         clean: {
             src: ['<%= pkg.webAssetsDir %>/**']
         },
@@ -48,7 +47,6 @@ module.exports = function(grunt) {
         },
         uglify: {
             options: {
-                banner: '<%= banner %>',
                 preserveComments: false
             },
             build: {
@@ -75,7 +73,6 @@ module.exports = function(grunt) {
         cssmin: {
             combine: {
                 options: {
-                    banner: '<%= banner %>',
                     keepSpecialComments: 0
                 },
                 files: {

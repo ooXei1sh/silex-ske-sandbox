@@ -11,7 +11,7 @@ $app->register(new ConfigServiceProvider(__DIR__.'/../resources/config/services.
 // register service providers
 $app->register(new ServiceRegisterProvider('config.providers'));
 
-// register symfony web profiler in dev environment only
+// register dev only services
 if ('dev' === $app['environment']) {
     $serviceRegisterProvider = new ServiceRegisterProvider();
     $serviceRegisterProvider->registerServiceProvider($app, array('class' => 'Silex\Provider\WebProfilerServiceProvider'));
