@@ -32,6 +32,12 @@ if (isset($app['uuid'])) {
     $console->add($command);
 }
 
+if (isset($app['mailer'])) {
+    $command = new Dev\Command\MailerCommand();
+    $command->setMailer($app['mailer']);
+    $console->add($command);
+}
+
 if ('dev' === $app['environment']) {
 
     $config = new \Doctrine\ORM\Configuration();

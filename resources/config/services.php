@@ -55,5 +55,8 @@ return array(
         'twigServiceProvider' => array(
             'class' => 'Silex\Provider\TwigServiceProvider'
         ),
+        'mailerServiceProvider' => array(
+            'class' => 'Dev\Pub\Provider\MailerServiceProvider'
+        ),       
     )
 );
