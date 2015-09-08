@@ -26,29 +26,34 @@ class DemoCommand extends Command
 
         $items = array(
             'progress',
+            'table',
             'formatter',
             'dialog',
-            'table',
         );
 
-        $sel = $this->getHelper('dialog')->select($output, 'Select a number:', $items, '0');
+        $sel = $this->getHelper('dialog')->select($output, 'Select by key number: ', $items, '0');
+        $formatter = $this->getHelper('formatter');
 
         switch ($items[$sel])
         {
             case 'progress':
+                $formatted = $formatter->formatBlock('Progress', 'info', true);
+                $output->writeln($formatted);
+
                 $progress = $this->getHelper('progress');
                 $progress->start($output, 25);
                 $i = 0;
                 while ($i++ < 25) {
-                    // ... do some work
                     usleep(50000);
-                    // advance the progress bar 1 unit
                     $progress->advance();
                 }
                 $progress->finish();
                 break;
 
              case 'table':
+                $formatted = $formatter->formatBlock('Table', 'info', true);
+                $output->writeln($formatted);
+
                 $table = $this->getHelper('table');
                 $table
                     ->setHeaders(array('1','2','3'))
@@ -59,13 +64,18 @@ class DemoCommand extends Command
                 break;
 
             case 'formatter':
-                $formatter = $this->getHelper('formatter');
+                //$formatter = $this->getHelper('formatter');
+                $formatted = $formatter->formatBlock('Formatter', 'info', true);
+                $output->writeln($formatted);
 
                 $formatted = $formatter->formatSection('Info', 'Format section info text.');
                 $output->writeln($formatted);
                 $output->writeln('');
 
-                $formatted = $formatter->formatBlock(array('* Format block error', '* Passing array', '* Foo bar baz qux'), 'error');
+                $array = array('Format block error', 'Foo bar baz qux');
+                array_walk($array, function(&$v,$k){ $v = '* '.$v; });
+
+                $formatted = $formatter->formatBlock($array, 'error');
                 $output->writeln($formatted);
                 $output->writeln('');
 
@@ -80,15 +90,20 @@ class DemoCommand extends Command
             case 'dialog':
                 $dialog = $this->getHelper('dialog');
 
+                $formatted = $formatter->formatBlock('Dialog', 'info', true);
+                $output->writeln($formatted);
+
                 $opts = array('ask', 'autocomplete', 'hidden', 'confirm', 'validator', 'shy');
                 $sel = $dialog->select($output, 'Which dialog would you like to demo?', $opts, '0');
-                $output->writeln("You selected $opts[$sel]");
+
+                $formatted = $formatter->formatBlock(ucfirst($opts[$sel]), 'info', true);
+                $output->writeln($formatted);
 
                 switch($opts[$sel])
                 {
                     case 'ask':
-                        $time = $dialog->ask($output, 'What time is it?', '2PM');
-                        $output->writeln("The time now is $time");
+                        $time = $dialog->ask($output, 'What time is it? ', '2PM');
+                        $output->writeln("The time now is $time.");
                         break;
 
                     case 'autocomplete':
@@ -98,12 +113,12 @@ class DemoCommand extends Command
                         break;
 
                     case 'hidden':
-                        $response = $dialog->askHiddenResponse($output, 'What time is it?');
+                        $response = $dialog->askHiddenResponse($output, 'What time is it? ');
                         $output->writeln("The time now is $response");
                         break;
 
                     case 'confirm':
-                        $confirm = $dialog->askConfirmation($output, 'Do you like French fries?',true);
+                        $confirm = $dialog->askConfirmation($output, 'Do you like French fries? ', true);
 
                         if ($confirm)
                             $output->writeln('You like French fries.');
@@ -112,7 +127,7 @@ class DemoCommand extends Command
                         break;
 
                     case 'validator':
-                        $question ='What color was the white horse of Henry IV?';
+                        $question ='What color was the white horse of Henry IV? ';
                         $error = 'This is not a color!';
 
                         $validator = function ($color) use ($error) {
@@ -135,15 +150,10 @@ class DemoCommand extends Command
                     case 'shy':
                         $input->setInteractive(false);
                         $dialog->setInput($input);
-                        $dialog->ask($output, 'Do you have a job?', 'not yet');
+                        $dialog->ask($output, 'Do you have a job? ', 'not yet');
                         break;
                 }
                 break;
         }
-    }
-
-    protected function write($sec,$msg){
-        $formatted = $this->getHelper('formatter')->formatSection($sec,$msg);
-        $this->output->writeln($formatted);
     }
 }
