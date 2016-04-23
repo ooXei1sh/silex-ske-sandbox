@@ -1,7 +1,7 @@
 Silex SKE Sandbox
 =================
 
-This project is a sample or a bootstrap silex application. You can use it for your next php application. A Silex Edition based on [lyrixx/silex-kitchen-edition](https://packagist.org/packages/lyrixx/silex-kitchen-edition)
+This project is a sample or a bootstrap [silex](http://silex.sensiolabs.org/) application. You can use it for your next php application. A Silex Edition based on [lyrixx/silex-kitchen-edition](https://github.com/lyrixx/Silex-Kitchen-Edition)
 
 Clone
 -----
@@ -11,7 +11,7 @@ Clone
 Install
 -------
 
-Run the following within terminal
+    ~$ cd silex-ske-sandbox
 
     ~$ composer install && npm install && bower install && grunt
 
