@@ -3,7 +3,7 @@
 /resources/log/*
 /vendor/
 /public_html/assets/*
-/public_html/assets/css/bootstrap.css
+/assets/css/bootstrap.css
 /assets/js/lib/*
 /resources/config/params.php
 /node_modules/
